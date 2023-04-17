@@ -17,7 +17,14 @@ defmodule PicChatWeb.Router do
   scope "/", PicChatWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
+    live "/", MessageLive.Index, :index
+
+    live "/new", MessageLive.Index, :new
+    live "/:id/edit", MessageLive.Index, :edit
+
+    live "/:id", MessageLive.Show, :show
+    live "/:id/show/edit", MessageLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
